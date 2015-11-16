@@ -108,8 +108,6 @@ Lastly, we compare the average weekday steps to the average weekend steps by int
         by_day <- group_by(dat2,daytype,interval)
         by_day <- summarise(by_day,mean(steps))
         by_day <- rename(by_day,mean_steps=`mean(steps)`)
-        qplot(x=interval, y=mean_steps, fill=daytype,
-                               data=by_day, geom="bar", stat="identity",
-                               position="dodge")
+        xyplot(mean_steps ~ interval| factor(daytype), data=by_day,type="l")
 ```
 

@@ -170,7 +170,7 @@ Next we look at the new mean and median steps per day with the imputed values. B
 ```
 
 ```
-## [1] 10907.7
+## [1] 11518.59
 ```
 
 ```r
@@ -178,7 +178,7 @@ Next we look at the new mean and median steps per day with the imputed values. B
 ```
 
 ```
-## [1] 11162
+## [1] 11458
 ```
 
 Lastly, we compare the average weekday steps to the average weekend steps by interval. We generally see higher steps during the weekdays at the lower intervals and higher steps during the weekends at the higher intervals, indicating we are more active earlier in the day on weekdays and more active later in the day on weekends.
@@ -191,9 +191,7 @@ Lastly, we compare the average weekday steps to the average weekend steps by int
         by_day <- group_by(dat2,daytype,interval)
         by_day <- summarise(by_day,mean(steps))
         by_day <- rename(by_day,mean_steps=`mean(steps)`)
-        qplot(x=interval, y=mean_steps, fill=daytype,
-                               data=by_day, geom="bar", stat="identity",
-                               position="dodge")
+        xyplot(mean_steps ~ interval| factor(daytype), data=by_day,type="l")
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
